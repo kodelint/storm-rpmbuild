@@ -1,0 +1,18 @@
+[Unit]
+Description=Storm UI
+After=network.target
+
+[Service]
+User=storm
+Group=storm
+EnvironmentFile=/etc/sysconfig/storm
+ExecStart=/usr/local/storm/bin/storm  --config /usr/local/storm/conf/storm.yaml ui
+Restart=on-failure
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=storm-ui
+SyslogLevel=debug
+#SyslogLevelPrefix=true
+
+[Install]
+WantedBy=multi-user.target
